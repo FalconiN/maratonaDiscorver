@@ -1,6 +1,9 @@
 :root {
     --dark-blue: #363f5f;
     --dark-green: #2d4a22;
+    --green: #49aa26;
+    --ligth-green: #3dd705;
+    --red: #e92929
 }
 
 * {
@@ -35,11 +38,6 @@ body {
     margin: auto;
 }
 
-.button.new {
-    display: inline-block;
-    margin-bottom: .8rem;
-}
-
 /* ============ Titles =============== */
 h2{
     margin-top: 3.2rem;
@@ -51,12 +49,52 @@ h2{
 /* ============ links e botões =============== */
 
 a {
-    color: #49aa26;
+    color: var(--green);
     text-decoration: none;
 }
 
 a:hover {
-    color: #3dd705;
+    color: var(--ligth-green);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+    color: white;
+    background: var(--green);
+    padding: 0;
+
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--ligth-green);
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
+
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
 }
 
 /* ============ HEADER =============== */
@@ -110,7 +148,7 @@ header {
 }
 
 .card.total {
-    background: #49aa26;
+    background: var(--green);
     color: white;
 }
 
@@ -198,11 +236,52 @@ td.expense {
 .modal {
     background: #f0f2f5;
     padding: 2.4rem;
-    position: relative;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 0.25rem;
+
 }
 
 .close {
     cursor: pointer;
+}
+
+
+/* ============ FORMULÁRIO =============== */
+
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.8rem;
+
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button, 
+.input-group.actions button{
+    width: 48%;
 }
 
 
