@@ -240,6 +240,8 @@ td.expense {
     max-width: 500px;
     border-radius: 0.25rem;
 
+    position: relative;
+    z-index: 1;
 }
 
 .close {

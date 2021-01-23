@@ -1,4 +1,6 @@
 const modal = document.querySelector('.modal-overlay')
+
+
 // const button = document.querySelector('.button')
 // const close = document.querySelector('.cancel')
 
@@ -12,8 +14,7 @@ const modal = document.querySelector('.modal-overlay')
 
 // })
 
-
-var Modal = {
+let Modal = {
     open(){
         modal.classList.add('active')
     },
