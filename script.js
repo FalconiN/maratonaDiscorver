@@ -1,6 +1,5 @@
 const modal = document.querySelector('.modal-overlay')
 
-
 // const button = document.querySelector('.button')
 // const close = document.querySelector('.cancel')
 

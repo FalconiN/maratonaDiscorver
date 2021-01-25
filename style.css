@@ -111,6 +111,7 @@ header {
 }
 
 /* ============ BALANCE =============== */
+
 #balance {
     margin-top: -6rem;
 }
@@ -212,7 +213,6 @@ td.expense {
 
 /* ============ MODAL =============== */
 
-
 .modal-overlay {
     width: 100%;
     height: 100%;
@@ -247,7 +247,6 @@ td.expense {
 .close {
     cursor: pointer;
 }
-
 
 /* ============ FORMULÁRIO =============== */
 
@@ -286,9 +285,6 @@ input {
     width: 48%;
 }
 
-
-
-
 /* ============ FOOTER =============== */
 
 footer{
@@ -297,7 +293,6 @@ footer{
     color: var(--dark-blue);
     opacity: 0.6;
 }
-
 
 /* ============ Responsive =============== */
 
@@ -315,6 +310,4 @@ footer{
     /* #data-table {
         
     } */
-
-
 }
