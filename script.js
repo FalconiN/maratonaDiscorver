@@ -25,43 +25,49 @@ let Modal = {
         }
 }
 
-
-
-const transactions = [
-    {
-        id: 1, 
-        description: 'Luz',
-        amount: -50000,
-        date: '23/01/2021',
-    },
-    {
-        id: 2, 
-        description: 'Website',
-        amount: 500000,
-        date: '23/01/2021',
-    },
-    {
-        id: 3, 
-        description: 'Internet',
-        amount: -20000,
-        date: '23/01/2021',
-    },
-    {
-        id: 4, 
-        description: 'App',
-        amount: 200000,
-        date: '23/01/2021',
-    },
-]
-
-
 const Transaction = {
+
+    all: [
+        {
+            description: 'Luz',
+            amount: -50000,
+            date: '23/01/2021',
+        },
+        {
+            description: 'Website',
+            amount: 500000,
+            date: '23/01/2021',
+        },
+        {
+            description: 'Internet',
+            amount: -20000,
+            date: '23/01/2021',
+        },
+        {
+            description: 'App',
+            amount: 200000,
+            date: '23/01/2021',
+        },
+    ], 
+
+    add(transaction){
+        Transaction.all.push(transaction)
+
+        App.reload()
+    },
+
+    remove(index){
+        Transaction.all.splice(index, 1)
+
+        App.reload()
+    },
+
     incomes () {
         // somar as entradas 
         let income = 0
         //pegar todas as transações
         //para cada transação
-        transactions.forEach((transaction) => {
+        Transaction.all.forEach((transaction) => {
             //se for maior que 0
             if (transaction.amount > 0){
                 //somar e retornar a variavel
@@ -75,7 +81,7 @@ const Transaction = {
         let expense = 0
         //pegar todas as transações
         //para cada transação
-        transactions.forEach((transaction) => {
+        Transaction.all.forEach((transaction) => {
             //se for menor que 0
             if (transaction.amount < 0){
                 //somar e retornar a variavel
@@ -125,9 +131,12 @@ const DOM = {
         document.getElementById('incomeDisplay').innerHTML = Utils.formatCurrency(Transaction.incomes())
         document.getElementById('expenseDisplay').innerHTML = Utils.formatCurrency(Transaction.expenses())
         document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(Transaction.total())
+    },
+
+    clearTransactions(){
+        DOM.transactionContainer.innerHTML = ""
     }
 }
-
 
 const Utils = {
     formatCurrency(value){
@@ -144,15 +153,31 @@ const Utils = {
         //retorna o sinal (numero) + o valor (string)
         return signal + value
     }
+}
+
+const Form = {
 
 }
 
-// DOM.addTransaction(transactions[0])
+const App = {
+    init (){
+        Transaction.all.forEach((transaction) => {
+            // console.log(transaction)
+            DOM.addTransaction(transaction)
+        })
+        //chamando a funionalidade update
+        DOM.updateBalance()
+        
+    },
+    reload (){
+        //limpando e inicianto no reload a aplicação
+        DOM.clearTransactions()
+        App.init()
+    }
+}
 
+App.init()
 
-transactions.forEach((transaction) => {
-    // console.log(transaction)
-    DOM.addTransaction(transaction)
-})
+Transaction.remove(0)
 
-DOM.updateBalance()
+ 
