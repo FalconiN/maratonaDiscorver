@@ -249,4 +249,3 @@ const App = {
 
 App.init()
 
- 
