@@ -139,6 +139,16 @@ const DOM = {
 }
 
 const Utils = {
+    formatDate(date){
+        const splittedDate = date.split('-')
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+    },
+
+    formatAmount(value) {
+        value = Number(value) * 100
+
+        return value
+    },
     formatCurrency(value){
         const signal = Number(value) < 0 ? "-" : ""
         //pegando caracteres especias
@@ -152,7 +162,8 @@ const Utils = {
         })
         //retorna o sinal (numero) + o valor (string)
         return signal + value
-    }
+    },
+    
 }
 
 const Form = {
@@ -177,19 +188,45 @@ const Form = {
 
     },
 
+    formatValues(){
+        let {description, amount, date} = Form.getValues()
+        amount = Utils.formatAmount(amount)
+
+        date = Utils.formatDate(date)
+        
+        return {
+            description, 
+            amount,
+            date
+        }
+    },
+
+    saveTransaction(transaction){
+        Transaction.add(transaction)
+    },
+
+    clearFields(){
+        Form.description.value = ""
+        Form.amount.value = ""
+        Form.date.value = ""
+    },
+
     submit(event) {
         event.preventDefault()
 
         try {
             //verificar se todas as informações foram preenchidas
             Form.validateFields()
-
             //formatar os dados para salvar
-            // Form.formatData()
+            const transaction = Form.formatValues()
             //salvar
+            Form.saveTransaction(transaction)
             // apagar os dados do formulário
+            Form.clearFields()
             //modal feche
+            Modal.toggle()
             //atualizar a aplicação
+            // já possui o reload no 
         } catch (error) {
             alert(error.message)
         }
