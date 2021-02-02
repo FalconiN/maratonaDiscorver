@@ -25,30 +25,22 @@ let Modal = {
         }
 }
 
+const Storage = {
+    //pegar os dados
+    get() {
+        //retorna a string em um arry (.parse faz essa conversão)
+        return JSON.parse(localStorage.getItem('dev.finances: transactions')) || []
+    },
+    //setar os lados
+    set(transactions){
+        //transformar (formatando) um array [transactions] em string
+        localStorage.setItem("dev.finances: transactions", JSON.stringify(transactions))
+    }
+}
+
 const Transaction = {
 
-    all: [
-        {
-            description: 'Luz',
-            amount: -50000,
-            date: '23/01/2021',
-        },
-        {
-            description: 'Website',
-            amount: 500000,
-            date: '23/01/2021',
-        },
-        {
-            description: 'Internet',
-            amount: -20000,
-            date: '23/01/2021',
-        },
-        {
-            description: 'App',
-            amount: 200000,
-            date: '23/01/2021',
-        },
-    ], 
+    all: Storage.get(),
 
     add(transaction){
         Transaction.all.push(transaction)
@@ -103,13 +95,14 @@ const DOM = {
     addTransaction (transaction, index) {
         const tr = document.createElement('tr')
         tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+        tr.dataset.index = index
 
         // console.log(tr.innerHTML)
 
         DOM.transactionContainer.appendChild(tr)
 
     },
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
 
         // if else ternário
         const CSSclass = transaction.amount > 0 ? "income" : "expense"
@@ -121,7 +114,7 @@ const DOM = {
             <td class="${CSSclass}">${amount}</td>
             <td class="date">${transaction.date}</td>
             <td>
-                <img src="assets/minus.svg" alt="remover transação">
+                <img  onclick="Transaction.remove(${index})" src="assets/minus.svg" alt="remover transação">
             </td>
         `
         return html
@@ -216,7 +209,7 @@ const Form = {
 
         try {
             //verificar se todas as informações foram preenchidas
-            Form.validateFields()
+            Form.validateFields()  
             //formatar os dados para salvar
             const transaction = Form.formatValues()
             //salvar
@@ -226,7 +219,7 @@ const Form = {
             //modal feche
             Modal.toggle()
             //atualizar a aplicação
-            // já possui o reload no 
+            // já possui o reload no add(transaction)
         } catch (error) {
             alert(error.message)
         }
@@ -234,14 +227,17 @@ const Form = {
     }
 }
 
+
 const App = {
     init (){
-        Transaction.all.forEach((transaction) => {
+        Transaction.all.forEach((transaction, index) => {
             // console.log(transaction)
-            DOM.addTransaction(transaction)
+            DOM.addTransaction(transaction, index)
         })
         //chamando a funionalidade update
         DOM.updateBalance()
+
+        Storage.set(Transaction.all)
         
     },
     reload (){
