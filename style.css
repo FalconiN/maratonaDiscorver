@@ -197,6 +197,7 @@ table tbody td {
     background: white;
 
     padding: 1rem 2rem;
+    cursor: pointer;
 }
 
 td.description{
