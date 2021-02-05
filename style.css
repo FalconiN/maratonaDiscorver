@@ -3,7 +3,9 @@
     --dark-green: #2d4a22;
     --green: #49aa26;
     --ligth-green: #3dd705;
-    --red: #e92929
+    --red: #e92929;
+    --background: #f0f2f5;
+    --text: #000
 }
 
 * {
@@ -14,10 +16,11 @@
 
 html {
     font-size: 93.75%; /* 15px */
+    
 }
 
 body {
-    background: #f0f2f5;
+    background: #1c1c1c;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -103,7 +106,27 @@ header {
     background: var(--dark-green);
     padding: 2rem 0 10rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
 }
+
+header span {
+    margin-left: 15px;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+header span i {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
 
 #logo{
     color: #fff;
@@ -292,8 +315,8 @@ input {
 footer{
     text-align: center;
     padding: 4rem 0 2rem;
-    color: var(--dark-blue);
-    opacity: 0.6;
+    color: var(--green);
+    /* opacity: 0.6; */
 }
 
 /* ============ Responsive =============== */
@@ -313,3 +336,13 @@ footer{
         
     } */
 }
+
+
+/* ============ night-mode ======== */
+
+
+.night-mode {
+    background-color: #f0f2f5;
+}
+
+

@@ -13,6 +13,25 @@ const modal = document.querySelector('.modal-overlay')
 
 // })
 
+const darkMode = document.querySelector("body")
+// const darkheader = document.querySelector('header')
+
+// const click = document.querySelector(".click")
+
+
+
+// click.addEventListener('click', () => {
+//     darkMode.classList.toggle('night-mode')
+// })
+
+let Night = {
+    dark(){
+        darkMode.classList.toggle('night-mode')
+    }
+
+}
+
+
 let Modal = {
     // open(){
     //     modal.classList.add('active')
