@@ -20,7 +20,7 @@ html {
 }
 
 body {
-    background: #1c1c1c;
+    background: #fafafa;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -183,6 +183,12 @@ header span i {
     overflow-x: auto;
 }
 
+#transaction p{
+    padding: 0.3rem 0 1rem;
+    color: var(--green);
+    font: 1.8rem;
+}
+
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
@@ -337,12 +343,47 @@ footer{
     } */
 }
 
+.transaction div{
+    position: relative;
+}
+
+
+.add {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: var(--green);
+    flex-direction: column;
+    right: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* position: fixed; */
+    /* bottom: 100px; */
+    transition: 100ms ease-in;
+
+}
+
+.add:hover {
+    background-color: var(--ligth-green);
+}
+
+.add i {
+    display: flex;
+    justify-content: center;
+    /* padding: 43%; */
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: white;
+    /* flex-direction: column; */
+}
+
 
 /* ============ night-mode ======== */
 
 
 .night-mode {
-    background-color: #f0f2f5;
+    background-color: #1c1c1c;
 }
 
 
